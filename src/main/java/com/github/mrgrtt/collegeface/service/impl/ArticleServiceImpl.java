@@ -1,6 +1,7 @@
 package com.github.mrgrtt.collegeface.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.github.mrgrtt.collegeface.entity.Article;
 import com.github.mrgrtt.collegeface.entity.ArticleContent;
 import com.github.mrgrtt.collegeface.mapper.ArticleContentMapper;
@@ -10,6 +11,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,12 +59,33 @@ public class ArticleServiceImpl  implements IArticleService {
 
     @Override
     public void add(int type, String title, String content) {
+            //先插入文章内容表,自动生成文章id
+            LocalDateTime localDateTime = LocalDateTime.now();
+            ArticleContent articleContent = new ArticleContent();
+            articleContent.setCreateTime(localDateTime);
+            articleContent.setUpdateTime(localDateTime);
+            articleContent.setDetail(content);
+            articleContentMapper.insert(articleContent);
 
+            //根据新插入的内容,获取文章id
+            QueryWrapper<ArticleContent> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("detail",content);
+            articleContent = articleContentMapper.selectOne(queryWrapper);
+            Long article_content_id = articleContent.getId();
+
+            //插入文章表
+            Article article = new Article();
+            article.setArticleContentId(article_content_id);
+            article.setCreateTime(localDateTime);
+            article.setUpdateTime(localDateTime);
+            article.setTitle(title);
+            article.setType(type);
+            articleMapper.insert(article);
     }
 
     @Override
     public void update(long id, int type, String title, String content) {
-
+        a
     }
 
     @Override
