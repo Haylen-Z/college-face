@@ -46,8 +46,6 @@ public class ArticleServiceImpl  implements IArticleService {
             return null;
         }else{
             articleId = article.getArticleContentId();
-            QueryWrapper<ArticleContent> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("id",article);
             ArticleContent articleContent = articleContentMapper.selectById(articleId);
             String s = null;
             if(articleContent != null){
@@ -85,11 +83,29 @@ public class ArticleServiceImpl  implements IArticleService {
 
     @Override
     public void update(long id, int type, String title, String content) {
-        a
+        LocalDateTime  updateTime = LocalDateTime.now();
+
+        //更新文章表
+        Article article = new Article();
+        article.setId(id);
+        article.setUpdateTime(updateTime);
+        article.setType(type);
+        article.setTitle(title);
+        articleMapper.updateById(article);
+        //更新文章内容表
+        ArticleContent articleContent = new ArticleContent();
+        article = articleMapper.selectById(id);
+        articleContent.setId(article.getArticleContentId());
+        articleContent.setUpdateTime(updateTime);
+        articleContent.setDetail(content);
+        articleContentMapper.updateById(articleContent);
     }
 
     @Override
     public void delete(long id) {
-
+        Article article = articleMapper.selectById(id);
+        Long article_id = article.getArticleContentId();
+        articleContentMapper.deleteById(article_id);
+        articleMapper.deleteById(id);
     }
 }

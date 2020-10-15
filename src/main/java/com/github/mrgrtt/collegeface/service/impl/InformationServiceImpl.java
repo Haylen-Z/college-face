@@ -6,6 +6,8 @@ import com.github.mrgrtt.collegeface.service.IInformationService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -15,6 +17,30 @@ import org.springframework.stereotype.Service;
  * @since 2020-10-12
  */
 @Service
-public class InformationServiceImpl extends ServiceImpl<InformationMapper, Information> implements IInformationService {
+public class InformationServiceImpl implements IInformationService {
 
+    @Override
+    public String getDatail(String name) {
+        return null;
+    }
+
+    @Override
+    public List<Information> getAll() {
+        return null;
+    }
+
+    @Override
+    public void add(String name, String detail) {
+
+    }
+
+    @Override
+    public void update(long id, String name, String detail) {
+
+    }
+
+    @Override
+    public void delete(long id) {
+
+    }
 }
