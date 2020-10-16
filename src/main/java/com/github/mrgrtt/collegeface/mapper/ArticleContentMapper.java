@@ -1,6 +1,6 @@
 package com.github.mrgrtt.collegeface.mapper;
 
-import com.github.mrgrtt.collegeface.entity.ArticleContent;
+import com.github.mrgrtt.collegeface.domain.entity.ArticleContent;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

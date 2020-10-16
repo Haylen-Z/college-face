@@ -17,7 +17,7 @@ public class AuthenticateInterceptor extends HandlerInterceptorAdapter {
         AntPathMatcher antPathMatcher = new AntPathMatcher();
         for (String path: requirePaths) {
             if (antPathMatcher.match(path, request.getRequestURI())) {
-                if (request.getSession().getAttribute("UserId") == null) {
+                if (request.getSession().getAttribute(SessionKey.USER_ID.getKey()) == null) {
                     response.getWriter().println("未登录");
                     return  false;
                 }

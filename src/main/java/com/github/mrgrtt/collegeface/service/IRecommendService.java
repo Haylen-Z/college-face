@@ -1,6 +1,6 @@
 package com.github.mrgrtt.collegeface.service;
 
-import com.github.mrgrtt.collegeface.entity.Recommend;
+import com.github.mrgrtt.collegeface.domain.entity.Recommend;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

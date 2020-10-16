@@ -1,6 +1,6 @@
 package com.github.mrgrtt.collegeface.service.impl;
 
-import com.github.mrgrtt.collegeface.entity.Admin;
+import com.github.mrgrtt.collegeface.domain.entity.Admin;
 import com.github.mrgrtt.collegeface.mapper.AdminMapper;
 import com.github.mrgrtt.collegeface.service.IAdminService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
