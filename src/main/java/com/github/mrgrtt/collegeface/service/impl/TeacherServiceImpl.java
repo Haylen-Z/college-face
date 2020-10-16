@@ -57,10 +57,6 @@ public class TeacherServiceImpl implements ITeacherService {
         //插入文章内容表
         articleContentMapper.insert(articleContent);
 
-        //根据新插入的内容,获取文章id
-        QueryWrapper<ArticleContent> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("detail",content);
-        articleContent = articleContentMapper.selectOne(queryWrapper);
         Long article_content_id = articleContent.getId();
 
         //插入教师信息表

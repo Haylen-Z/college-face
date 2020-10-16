@@ -59,7 +59,7 @@ public class ArticleServiceImpl  implements IArticleService {
     }
 
     @Override
-    public void add(int type, String title, String content) {
+    public Long add(int type, String title, String content) {
             //先插入文章内容表,自动生成文章id
             LocalDateTime localDateTime = LocalDateTime.now();
             ArticleContent articleContent = new ArticleContent();
@@ -68,10 +68,6 @@ public class ArticleServiceImpl  implements IArticleService {
             articleContent.setDetail(content);
             articleContentMapper.insert(articleContent);
 
-            //根据新插入的内容,获取文章id
-            QueryWrapper<ArticleContent> queryWrapper = new QueryWrapper<>();
-            queryWrapper.eq("detail",content);
-            articleContent = articleContentMapper.selectOne(queryWrapper);
             Long article_content_id = articleContent.getId();
 
             //插入文章表
@@ -82,6 +78,8 @@ public class ArticleServiceImpl  implements IArticleService {
             article.setTitle(title);
             article.setType(type);
             articleMapper.insert(article);
+
+            return article.getId();
     }
 
     @Override

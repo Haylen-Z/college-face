@@ -15,7 +15,7 @@ import java.util.List;
 public interface IArticleService  {
     public List<Article> getAll(int type,int start,int limit);
     public String getContent(long id);
-    public void add(int type,String title,String content);
+    public Long add(int type,String title,String content);
     public void update(long id,int type,String title,String content);
     public void delete(long id);
 }
