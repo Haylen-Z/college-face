@@ -34,8 +34,11 @@ public class ArticleServiceImpl  implements IArticleService {
 
     @Override
     public List<Article> getAll(int type, int start, int limit) {
-
-        return null;
+        QueryWrapper<Article> queryWrapper = new QueryWrapper<>();
+        String lastSql = "limit";
+        lastSql = lastSql + String.valueOf(limit) + "offset" + String.valueOf(start);
+        queryWrapper.eq("type",type).last(lastSql);
+        return articleMapper.selectList(queryWrapper);
     }
 
     @Override

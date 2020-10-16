@@ -33,7 +33,7 @@ public class TeacherServiceImpl implements ITeacherService {
 
     @Override
     public List<Teacher> getAll() {
-        return teacherMapper.selectList();
+        return teacherMapper.selectList(null);
     }
 
     @Override
