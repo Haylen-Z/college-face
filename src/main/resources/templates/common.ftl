@@ -120,6 +120,8 @@
     <script type="text/javascript">
         const   E = window.wangEditor
         const editor = new E( document.getElementById('wangE') )
+        editor.config.showFullScreen = true
+        editor.config.height = 500;
         editor.create();
         editor.config.uploadImgServer = '/admin/files/upload';
         editor.config.uploadFileName = 'file';
