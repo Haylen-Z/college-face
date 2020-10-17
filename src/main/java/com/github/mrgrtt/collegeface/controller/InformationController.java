@@ -25,31 +25,31 @@ public class InformationController {
         return mv;
     }
 
-    @RequestMapping(name = "/create-page", method = RequestMethod.GET)
+    @RequestMapping(value = "/create-page", method = RequestMethod.GET)
     public ModelAndView getCreatePage() {
         ModelAndView mv = new ModelAndView("admin/information/create-page");
         return mv;
     }
 
-    @RequestMapping(name = "/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult create(@RequestParam String name, @RequestParam String detail) {
         return CommonResult.success();
     }
 
-    @RequestMapping(name = "/update-page/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/update-page/{id}", method = RequestMethod.GET)
     public ModelAndView getUpdatePage(@PathVariable long id) {
         ModelAndView mv = new ModelAndView("admin/information/update-page");
         return mv;
     }
 
-    @RequestMapping(name = "/update/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult update(@PathVariable long id, @RequestParam String name, @RequestParam String detail) {
         return CommonResult.success();
     }
 
-    @RequestMapping(name = "/delete/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult delete(@PathVariable long id) {
         return CommonResult.success();

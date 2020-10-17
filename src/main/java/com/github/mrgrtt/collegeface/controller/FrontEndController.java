@@ -10,43 +10,45 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class FrontEndController {
 
-    @RequestMapping(name = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home() {
         ModelAndView mv = new ModelAndView("home");
         return mv;
     }
 
-    @RequestMapping(name = "/articles", method = RequestMethod.GET)
+    @RequestMapping(value = "/articles", method = RequestMethod.GET)
     public ModelAndView articles(@RequestParam int type,
                                  @RequestParam(required = false, defaultValue = "0") int start,
                                  @RequestParam(required = false, defaultValue = "16") int limit) {
-        ModelAndView mv = new ModelAndView("articles.ftl");
+        ModelAndView mv = new ModelAndView("articles");
         return mv;
     }
 
-    @RequestMapping(name = "/article/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/articles/{id}", method = RequestMethod.GET)
     public ModelAndView articleContent(@PathVariable long id) {
-        ModelAndView mv = new ModelAndView("articleContent.ftl");
+        ModelAndView mv = new ModelAndView("content");
+        mv.addObject("title", "文章标题");
         return mv;
     }
 
-    @RequestMapping(name = "/information/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/information/{name}", method = RequestMethod.GET)
     public ModelAndView information(@PathVariable String name) {
-        ModelAndView mv = new ModelAndView("information.ftl");
+        ModelAndView mv = new ModelAndView("content");
+        mv.addObject("title", name);
         return mv;
     }
 
-    @RequestMapping(name = "/teachers", method = RequestMethod.GET)
+    @RequestMapping(value = "/teachers", method = RequestMethod.GET)
     public ModelAndView teachers() {
-        ModelAndView mv = new ModelAndView("teachers.ftl");
+        ModelAndView mv = new ModelAndView("teachers");
         return mv;
     }
 
-    @RequestMapping(name = "/teacher/id", method = RequestMethod.GET)
-    public ModelAndView teacherContent() {
-        ModelAndView mv = new ModelAndView("teacherContent.ftl");
+    @RequestMapping(value = "/teachers/{id}", method = RequestMethod.GET)
+    public ModelAndView teacherContent(@PathVariable long id) {
+        ModelAndView mv = new ModelAndView("content");
+        mv.addObject("title", "陈基离");
         return mv;
     }
-
 
 }

@@ -23,19 +23,19 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class AdminController {
 
-    @RequestMapping(name = "/login-page", method = RequestMethod.GET)
+    @RequestMapping(value = "/login-page", method = RequestMethod.GET)
     public ModelAndView logInPage() {
-        ModelAndView mv = new ModelAndView("logInPage.ftl");
+        ModelAndView mv = new ModelAndView("logInPage");
         return mv;
     }
 
-    @RequestMapping(name = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(@RequestParam String username, @RequestParam String password) {
-        ModelAndView mv = new ModelAndView();
+        ModelAndView mv = new ModelAndView("redirect:/");
         return mv;
     }
 
-    @RequestMapping(name = "/admin/change-password", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/change-password", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult changePassword(HttpSession session, @RequestParam String newPassword) {
         return CommonResult.success();

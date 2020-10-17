@@ -10,12 +10,13 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 @Controller
 public class FileController {
 
-    @RequestMapping(name = "/admin/files/upload", method = RequestMethod.POST)
-    public CommonResult upload(@RequestParam MultipartFile file) {
-        return CommonResult.success();
+    @RequestMapping(value = "/admin/files/upload", method = RequestMethod.POST)
+    @ResponseBody
+    public CommonResult upload(@RequestPart MultipartFile file) {
+        return CommonResult.success("https://cdn4.buysellads.net/uu/1/41334/1550855391-cc_dark.png");
     }
 
-    @RequestMapping(name = "/files/{key}", method = RequestMethod.GET)
+    @RequestMapping(value = "/files/{key}", method = RequestMethod.GET)
     public ResponseEntity<StreamingResponseBody> download(@PathVariable String key) {
         return ResponseEntity.ok().build();
     }

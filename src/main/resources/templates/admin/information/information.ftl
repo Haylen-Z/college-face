@@ -1,68 +1,70 @@
 <!--后端学院信息列表-->
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta   charset="utf-8">
-        <title>学院信息列表</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <script src="/js/jquery.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/jquery.cookie.min.js"></script>
-        
-    </head>
-    <body>
-        <div    class="container">
-            <div    class="row">
-                <div    class="col-sm-3"    style="margin-top: 50px;">
-                    <nav    class="nav   bg-light">
-                        <ul class="nav nav-pills flex-column">
-                            <li class="nav-item">
-                                <a  class="nav-link active" href="#">学院信息列表</a>
-                            </li>
-                            <li class="nav-item">
-                                <a  class="nav-link" href="#">文章列表</a>
-                            </li>
-                            <li class="nav-item">
-                                <a  class="nav-link" href="#">教师信息列表</a>
-                            </li>
-                            <li class="nav-item">
-                                <a  class="nav-link" href="#">首页推荐列表</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <div    class="col-sm-8"    style="margin-top: 50px;">
-                    <button type="submit"   class="btn btn-outline-success" style="margin-bottom: 20px;">新增</button>
-                   <ul  class="list-group ">
-                            <li  class="list-group-item">
-                                <label class="col-sm-9">name</label>
-                                <button type="submit"   class="btn btn-outline-warning">编辑</button>
-                                <button type="submit"   class="btn btn-outline-danger">删除</button>
-                            </li>
-                            <li  class="list-group-item">
-                                <label class="col-sm-9">namesadsa</label>
-                                <button type="submit"   class="btn btn-outline-warning">编辑</button>
-                                <button type="submit"   class="btn btn-outline-danger">删除</button>
-                            </li>
-                            <li  class="list-group-item">
-                                <label class="col-sm-9">asdsadname</label>
-                                <button type="submit"   class="btn btn-outline-warning">编辑</button>
-                                <button type="submit"   class="btn btn-outline-danger">删除</button>
-                            </li>
-                            <li  class="list-group-item">
-                                <label class="col-sm-9">nsadsame</label>
-                                <button type="submit"   class="btn btn-outline-warning">编辑</button>
-                                <button type="submit"   class="btn btn-outline-danger">删除</button>
-                            </li>
-                            <li  class="list-group-item">
-                                <label class="col-sm-9">nafdme</label>
-                                <button type="submit"   class="btn btn-outline-warning">编辑</button>
-                                <button type="submit"   class="btn btn-outline-danger">删除</button>
-                            </li>
+<head>
+    <meta   charset="utf-8">
+    <title>学院信息列表</title>
+    <#import "../../common.ftl" as com>
+    <@com.depend/>
+</head>
+<body>
+
+<div class="container">
+    <#assign ai = 0>
+    <div class="row">
+        <@com.navSide ai />
+        <div class="col">
+            <div class="m-3">
+                <a class="btn btn-primary" href="/admin/information/create-page">
+                    新增
+                </a>
+            </div>
+            <div>
+                <div>
+                    <ul  class="list-group ">
+                        <li  class="list-group-item">
+                            <a href="#" >name</a>
+                            <a href="/admin/information/update-page/5"  class="btn btn-outline-secondary m-2 float-right">编辑</a>
+                            <a href="#" class="btn btn-danger m-2 float-right">删除</a>
+                        </li>
+                        <li  class="list-group-item">
+                            <a href="#" >name</a>
+                        </li>
+                        <li  class="list-group-item">
+                            <a href="#" >name</a>
+                        </li>
+                        <li  class="list-group-item">
+                            <a href="#" >name</a>
+                        </li>
+                        <li  class="list-group-item">
+                            <a href="#" >name</a>
+                        </li>
                     </ul>
                 </div>
             </div>
+            <div class="row m-4">
+                <nav class="m-auto" aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-    </body>
+    </div>
+</div>
+
+<@com.footer/>
+</body>
 </html>

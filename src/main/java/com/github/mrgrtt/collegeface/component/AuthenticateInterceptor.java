@@ -18,6 +18,8 @@ public class AuthenticateInterceptor extends HandlerInterceptorAdapter {
         for (String path: requirePaths) {
             if (antPathMatcher.match(path, request.getRequestURI())) {
                 if (request.getSession().getAttribute(SessionKey.USER_ID.getKey()) == null) {
+                    response.setCharacterEncoding("UTF-8");
+                    response.setHeader("Content-type","text/html;charset=UTF-8");
                     response.getWriter().println("未登录");
                     return  false;
                 }

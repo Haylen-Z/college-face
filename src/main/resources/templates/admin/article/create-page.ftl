@@ -2,41 +2,48 @@
 <html>
     <head>
         <meta   charset="utf-8">
-        <title>新增文章信息</title>
+        <title>文章发布</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <script src="/js/jquery.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/jquery.cookie.min.js"></script>
+        <#import "../../common.ftl" as com>
+        <@com.depend/>
     </head>
     <body>
         <div    class="container">
-            <h5 style="margin-top: 50px; text-align: center;">新增文章信息</h5>
-            <div    class="row">
-                <div    class="col-sm-8 input-group input-group-lg"   style="margin-top: 20px;">
-                    <input  type="text" class="form-control"    placeholder="文章标题">
-                </div>
-                <div    class="col-sm-2"    style="margin-top: 20px;">
-                    <div    class="btn btn-group">
-                        <button type="button" class="btn btn-outline-info btn-lg  dropdown-toggle"  data-toggle="dropdown">保存</button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">新闻</a>
-                            <a class="dropdown-item" href="#">通知</a>
-                            <a class="dropdown-item" href="#">专题</a>
-                          </div>
-                    </div>
-                    
+            <div class="row">
+                <@com.navSide 12/>
+                <div class="col-8 m-4">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">标题</label>
+                            <input type="text"  class="form-control" id="title" >
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">类型</label>
+                            <select id="type" class="form-control">
+                                <option value="0">新闻</option>
+                                <option value="1">通知</option>
+                                <option value="2">专题</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <@com.editor/>
+                        </div>
+                    </form>
+                    <button onclick="submitClick()" class="btn btn-primary float-right w-25">发布</button>
                 </div>
             </div>
-            <!--使用富文本编辑器wangEditor-->
-            <div    id="wangE"  style="margin-top: 60px;"></div>
-            <script type="text/javascript" src="/js/wangEditor.min.js"></script>
-            <script type="text/javascript">
-                const   E = window.wangEditor
-                const editor = new E( document.getElementById('wangE') )
-                editor.config.height = 400      /*设置编辑器的高*/
-                editor.create()
+
+            <script>
+                function submitClick() {
+                    let title = $("#title")[0].value;
+                    let type = $("#type")[0].value;
+                    let content = editor.txt.html();
+                    console.log(title);
+                    console.log(type);
+                    console.log(content);
+                }
             </script>
         </div>
+    <@com.footer/>
     </body>
 </html>

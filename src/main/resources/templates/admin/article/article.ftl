@@ -3,76 +3,72 @@
     <head>
         <meta   charset="utf-8">
         <title>文章列表</title>
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <script src="/js/jquery.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/jquery.cookie.min.js"></script>
+        <#import "../../common.ftl" as com>
+        <@com.depend/>
     </head>
     <body>
-        <div    class="container">
-            <div    class="row">
-                <div    class="col-sm-3"    style="margin-top: 50px;">
-                    <nav    class="nav   bg-light">
-                        <ul class="nav nav-pills flex-column">
-                            <li class="nav-item">
-                                <a  class="nav-link " href="#">学院信息列表</a>
-                            </li>
-                            <li class="nav-item">
-                                <a  class="nav-link active" href="#">文章列表</a>
-                            </li>
-                            <li class="nav-item">
-                                <a  class="nav-link" href="#">教师信息列表</a>
-                            </li>
-                            <li class="nav-item">
-                                <a  class="nav-link" href="#">首页推荐列表</a>
-                            </li>
-                        </ul>
-                    </nav>
+
+        <div class="container">
+            <#assign ai = type + 1>
+            <div class="row">
+                <@com.navSide ai />
+                <div class="col">
+                    <div class="m-3">
+                        <a class="btn btn-primary" href="/admin/articles/create-page">
+                            新增
+                        </a>
+                    </div>
+                    <div>
+                        <div>
+                            <ul  class="list-group ">
+                                <li  class="list-group-item">
+                                        <a href="#" >name</a>
+                                        <label class="m-2 " >2020-xx-xx</label>
+                                        <button class="btn btn-outline-secondary m-2 float-right">编辑</button>
+                                        <button class="btn btn-outline-danger m-2 float-right">删除</button>
+                                </li>
+                                <li  class="list-group-item">
+                                    <a href="#" >name</a>
+                                    <label class="float-right" >2020-xx-xx</label>
+                                </li>
+                                <li  class="list-group-item">
+                                    <a href="#" >name</a>
+                                    <label class="float-right" >2020-xx-xx</label>
+                                </li>
+                                <li  class="list-group-item">
+                                    <a href="#" >name</a>
+                                    <label class="float-right" >2020-xx-xx</label>
+                                </li>
+                                <li  class="list-group-item">
+                                    <a href="#" >name</a>
+                                    <label class="float-right" >2020-xx-xx</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row m-4">
+                        <nav class="m-auto" aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
-                <div    class="col-sm-9"    style="margin-top: 50px;">
-                    <ul class="nav nav-tabs nav-justified">
-                        <li class="nav-item">
-                            <a  class="nav-link active" href="article.ftl">新闻</a>
-                        </li>
-                        <li class="nav-item">
-                            <a  class="nav-link" href="notice.html">通知</a>
-                        </li>
-                        <li class="nav-item">
-                            <a  class="nav-link" href="topic.html">专题</a>
-                        </li>
-                    </ul>
-                    <div  style="margin-top: 50px;">
-                        <ul  class="list-group ">
-                                 <li  class="list-group-item">
-                                     <label class="col-sm-9">name</label>
-                                     <button type="submit"   class="btn btn-outline-warning">编辑</button>
-                                     <button type="submit"   class="btn btn-outline-danger">删除</button>
-                                 </li>
-                                 <li  class="list-group-item">
-                                     <label class="col-sm-9">namesadsa</label>
-                                     <button type="submit"   class="btn btn-outline-warning">编辑</button>
-                                     <button type="submit"   class="btn btn-outline-danger">删除</button>
-                                 </li>
-                                 <li  class="list-group-item">
-                                     <label class="col-sm-9">asdsadname</label>
-                                     <button type="submit"   class="btn btn-outline-warning">编辑</button>
-                                     <button type="submit"   class="btn btn-outline-danger">删除</button>
-                                 </li>
-                                 <li  class="list-group-item">
-                                     <label class="col-sm-9">nsadsame</label>
-                                     <button type="submit"   class="btn btn-outline-warning">编辑</button>
-                                     <button type="submit"   class="btn btn-outline-danger">删除</button>
-                                 </li>
-                                 <li  class="list-group-item">
-                                     <label class="col-sm-9">nafdme</label>
-                                     <button type="submit"   class="btn btn-outline-warning">编辑</button>
-                                     <button type="submit"   class="btn btn-outline-danger">删除</button>
-                                 </li>
-                         </ul>
-                     </div>
-                     <button type="submit"   class="btn btn-outline-success" style="margin-top: 20px;">新增</button>
-                </div> 
             </div>
         </div>
+
+    <@com.footer/>
     </body>
 </html>
