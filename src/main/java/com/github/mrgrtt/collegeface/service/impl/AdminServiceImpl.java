@@ -1,16 +1,11 @@
 package com.github.mrgrtt.collegeface.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
-import com.github.mrgrtt.collegeface.entity.Admin;
+import com.github.mrgrtt.collegeface.domain.entity.Admin;
 import com.github.mrgrtt.collegeface.mapper.AdminMapper;
 import com.github.mrgrtt.collegeface.service.IAdminService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.sql.Wrapper;
 
 /**
  * <p>

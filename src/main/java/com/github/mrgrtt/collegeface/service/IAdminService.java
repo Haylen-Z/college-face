@@ -1,6 +1,5 @@
 package com.github.mrgrtt.collegeface.service;
 
-
 /**
  * <p>
  *  服务类

@@ -1,10 +1,9 @@
 package com.github.mrgrtt.collegeface.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.github.mrgrtt.collegeface.entity.Information;
+import com.github.mrgrtt.collegeface.domain.entity.Information;
 import com.github.mrgrtt.collegeface.mapper.InformationMapper;
 import com.github.mrgrtt.collegeface.service.IInformationService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

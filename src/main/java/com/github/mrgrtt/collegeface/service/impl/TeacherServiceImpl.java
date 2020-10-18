@@ -1,14 +1,10 @@
 package com.github.mrgrtt.collegeface.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.github.mrgrtt.collegeface.domain.entity.Teacher;
 import com.github.mrgrtt.collegeface.entity.ArticleContent;
-import com.github.mrgrtt.collegeface.entity.Teacher;
 import com.github.mrgrtt.collegeface.mapper.ArticleContentMapper;
-import com.github.mrgrtt.collegeface.mapper.ArticleMapper;
 import com.github.mrgrtt.collegeface.mapper.TeacherMapper;
 import com.github.mrgrtt.collegeface.service.ITeacherService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

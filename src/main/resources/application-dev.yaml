@@ -2,3 +2,12 @@ spring:
   devtools:
     restart:
       additional-paths: src/main/java
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/collegeface?useUnicode=true&characterEncodeing=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 3325
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  freemarker:
+    suffix: .ftl

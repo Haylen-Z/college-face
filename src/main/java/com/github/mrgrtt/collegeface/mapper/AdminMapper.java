@@ -1,6 +1,6 @@
 package com.github.mrgrtt.collegeface.mapper;
 
-import com.github.mrgrtt.collegeface.entity.Admin;
+import com.github.mrgrtt.collegeface.domain.entity.Admin;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

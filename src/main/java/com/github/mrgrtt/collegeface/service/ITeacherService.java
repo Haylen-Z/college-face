@@ -1,6 +1,6 @@
 package com.github.mrgrtt.collegeface.service;
 
-import com.github.mrgrtt.collegeface.entity.Teacher;
+import com.github.mrgrtt.collegeface.domain.entity.Teacher;
 
 import java.util.List;
 

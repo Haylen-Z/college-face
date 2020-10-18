@@ -10,14 +10,16 @@ import javax.servlet.http.HttpServletResponse;
  * 登录认证拦截器
  */
 public class AuthenticateInterceptor extends HandlerInterceptorAdapter {
-    String[] requirePaths = { "/admin/**" };
+    String[] requirePaths = { "/admhin/**" };
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         AntPathMatcher antPathMatcher = new AntPathMatcher();
         for (String path: requirePaths) {
             if (antPathMatcher.match(path, request.getRequestURI())) {
-                if (request.getSession().getAttribute("UserId") == null) {
+                if (request.getSession().getAttribute(SessionKey.USER_ID.getKey()) == null) {
+                    response.setCharacterEncoding("UTF-8");
+                    response.setHeader("Content-type","text/html;charset=UTF-8");
                     response.getWriter().println("未登录");
                     return  false;
                 }

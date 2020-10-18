@@ -1,11 +1,10 @@
 package com.github.mrgrtt.collegeface.service.impl;
 
-import com.github.mrgrtt.collegeface.entity.ArticleContent;
-import com.github.mrgrtt.collegeface.entity.Recommend;
+
+import com.github.mrgrtt.collegeface.domain.entity.Recommend;
 import com.github.mrgrtt.collegeface.mapper.ArticleContentMapper;
 import com.github.mrgrtt.collegeface.mapper.RecommendMapper;
 import com.github.mrgrtt.collegeface.service.IRecommendService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
