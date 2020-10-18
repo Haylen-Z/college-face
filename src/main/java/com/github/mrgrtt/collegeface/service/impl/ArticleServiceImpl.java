@@ -2,7 +2,7 @@ package com.github.mrgrtt.collegeface.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.mrgrtt.collegeface.domain.entity.Article;
-import com.github.mrgrtt.collegeface.entity.ArticleContent;
+import com.github.mrgrtt.collegeface.domain.entity.ArticleContent;
 import com.github.mrgrtt.collegeface.mapper.ArticleContentMapper;
 import com.github.mrgrtt.collegeface.mapper.ArticleMapper;
 import com.github.mrgrtt.collegeface.service.IArticleService;

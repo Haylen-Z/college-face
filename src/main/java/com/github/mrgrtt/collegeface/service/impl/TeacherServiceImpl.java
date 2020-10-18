@@ -1,7 +1,7 @@
 package com.github.mrgrtt.collegeface.service.impl;
 
+import com.github.mrgrtt.collegeface.domain.entity.ArticleContent;
 import com.github.mrgrtt.collegeface.domain.entity.Teacher;
-import com.github.mrgrtt.collegeface.entity.ArticleContent;
 import com.github.mrgrtt.collegeface.mapper.ArticleContentMapper;
 import com.github.mrgrtt.collegeface.mapper.TeacherMapper;
 import com.github.mrgrtt.collegeface.service.ITeacherService;

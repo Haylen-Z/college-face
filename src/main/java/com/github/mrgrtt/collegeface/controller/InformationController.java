@@ -2,10 +2,15 @@ package com.github.mrgrtt.collegeface.controller;
 
 
 import com.github.mrgrtt.collegeface.domain.dto.CommonResult;
+import com.github.mrgrtt.collegeface.domain.entity.Information;
+import com.github.mrgrtt.collegeface.service.IInformationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * <p>
@@ -19,9 +24,15 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/admin/information")
 public class InformationController {
 
+    @Autowired
+    IInformationService iInformationService;
+
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getInformation() {
         ModelAndView mv = new ModelAndView("admin/information/information");
+
+        List<Information> informationList = iInformationService.getAll();
+
         return mv;
     }
 
@@ -34,6 +45,7 @@ public class InformationController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult create(@RequestParam String name, @RequestParam String detail) {
+        iInformationService.add(name,detail);
         return CommonResult.success();
     }
 
@@ -46,12 +58,14 @@ public class InformationController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult update(@PathVariable long id, @RequestParam String name, @RequestParam String detail) {
+        iInformationService.update(id,name,detail);
         return CommonResult.success();
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult delete(@PathVariable long id) {
+        iInformationService.delete(id);
         return CommonResult.success();
     }
 
