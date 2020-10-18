@@ -2,10 +2,15 @@ package com.github.mrgrtt.collegeface.controller;
 
 
 import com.github.mrgrtt.collegeface.domain.dto.CommonResult;
+import com.github.mrgrtt.collegeface.domain.entity.Recommend;
+import com.github.mrgrtt.collegeface.service.IRecommendService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 /**
  * <p>
@@ -19,9 +24,15 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/admin/recommends")
 public class RecommendController {
 
+    @Autowired
+    IRecommendService iRecommendService;
+
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getRecommends() {
         ModelAndView mv = new ModelAndView("admin/recommend/recommend");
+        //获取推荐信息列表
+        List<Recommend> recommendList = iRecommendService.getAll();
+
         return mv;
     }
 
@@ -35,6 +46,8 @@ public class RecommendController {
     @ResponseBody
     public CommonResult create(@RequestParam long articleId,
                                @RequestParam String title, @RequestParam String cover) {
+        //添加推荐信息
+        iRecommendService.add(title,articleId,cover);
         return CommonResult.success();
     }
 
@@ -48,12 +61,16 @@ public class RecommendController {
     @ResponseBody
     public CommonResult update(@PathVariable long id, @RequestParam long articleId,
                                @RequestParam String title, @RequestParam String cover) {
+        //更新推荐信息
+        iRecommendService.update(id,title,articleId,cover);
         return CommonResult.success();
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult delete(@PathVariable long id) {
+        //删除推荐信息
+        iRecommendService.delete(id);
         return CommonResult.success();
     }
 }

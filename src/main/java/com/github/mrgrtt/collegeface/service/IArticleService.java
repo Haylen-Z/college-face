@@ -1,7 +1,9 @@
 package com.github.mrgrtt.collegeface.service;
 
 import com.github.mrgrtt.collegeface.domain.entity.Article;
-import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
+
 
 /**
  * <p>
@@ -11,6 +13,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author haylen
  * @since 2020-10-12
  */
-public interface IArticleService extends IService<Article> {
-
+public interface IArticleService  {
+    public List<Article> getAll(int type,int start,int limit);
+    public String getContent(long id);
+    public Long add(int type,String title,String content);
+    public void update(long id,int type,String title,String content);
+    public void delete(long id);
 }
