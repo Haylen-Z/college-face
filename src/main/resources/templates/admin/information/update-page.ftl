@@ -25,6 +25,10 @@
                 </div>
             </form>
             <button onclick="submitClick()" class="btn btn-primary float-right w-25">提交</button>
+            <div id="toast" class="toast" role="alert" aria-live="assertive" data-delay="3000">
+                <div id="toastContent" class="toast-body">
+                </div>
+            </div>
         </div>
     </div>
 
@@ -41,11 +45,11 @@
                 method: "POST",
                 data: {name: name, detail: detail},
                 success: function (r) {
-                    $("#toastContent").text("跟新成功");
+                    $("#toastContent").text("更新成功");
                     $("#toast").toast("show");
                 },
                 error: function (x, s, e) {
-                    $("#toastContent").text("跟新失败");
+                    $("#toastContent").text("更新失败");
                     $("#toast").toast("show");
                 }
             });

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
  * 登录认证拦截器
  */
 public class AuthenticateInterceptor extends HandlerInterceptorAdapter {
-    String[] requirePaths = { "/admhin/**" };
+    String[] requirePaths = { "/admin/**" };
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

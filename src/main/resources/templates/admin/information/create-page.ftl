@@ -12,10 +12,6 @@
     <div class="row">
         <@com.navSide 12/>
         <div class="col-8 m-4">
-            <div id="toast" class="toast" role="alert" aria-live="assertive" data-delay="3000">
-                <div id="toastContent" class="toast-body">
-                </div>
-            </div>
             <form>
                 <div class="form-group">
                     <label for="exampleInputEmail1">信息名</label>
@@ -26,6 +22,10 @@
                 </div>
             </form>
             <button onclick="submitClick()" class="btn btn-primary float-right w-25">提交</button>
+            <div id="toast" class="toast" role="alert" aria-live="assertive" data-delay="3000">
+                <div id="toastContent" class="toast-body">
+                </div>
+            </div>
         </div>
     </div>
 
@@ -40,7 +40,7 @@
             $.ajax({
                 url: "/admin/information/create",
                 method: "POST",
-                data: {name: name, content: content},
+                data: {name: name, detail: content},
                 success: function (r) {
                     $("#toastContent").text("添加成功");
                     $("#toast").toast("show");

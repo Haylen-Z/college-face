@@ -15,7 +15,7 @@
         <@com.navSide ai />
         <div class="col">
             <div class="m-3">
-                <a class="btn btn-primary" href="/admin//create-page">
+                <a class="btn btn-primary" href="/admin/information/create-page">
                     新增
                 </a>
             </div>

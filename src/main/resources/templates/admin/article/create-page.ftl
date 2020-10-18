@@ -12,10 +12,6 @@
             <div class="row">
                 <@com.navSide 12/>
                 <div class="col-8 m-4">
-                    <div id="toast" class="toast" role="alert" aria-live="assertive" data-delay="3000">
-                        <div id="toastContent" class="toast-body">
-                        </div>
-                    </div>
                     <form>
                         <div class="form-group">
                             <label for="exampleInputEmail1">标题</label>
@@ -34,6 +30,10 @@
                         </div>
                     </form>
                     <button onclick="submitClick()" class="btn btn-primary float-right w-25">发布</button>
+                    <div id="toast" class="toast" role="alert" aria-live="assertive" data-delay="3000">
+                        <div id="toastContent" class="toast-body">
+                        </div>
+                    </div>
                 </div>
             </div>
 

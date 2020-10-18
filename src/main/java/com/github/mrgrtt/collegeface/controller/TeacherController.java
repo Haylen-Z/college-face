@@ -3,12 +3,15 @@ package com.github.mrgrtt.collegeface.controller;
 
 import com.github.mrgrtt.collegeface.domain.dto.CommonResult;
 import com.github.mrgrtt.collegeface.domain.entity.Teacher;
+
+import com.github.mrgrtt.collegeface.service.ITeacherService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,9 +26,12 @@ import java.util.List;
 @RequestMapping("/admin/teachers")
 public class TeacherController {
 
+    @Autowired
+    ITeacherService iTeacherService;
+
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getTeachers() {
-        List<Teacher> teachers = new ArrayList<>();
+        List<Teacher> teachers = iTeacherService.getAll();
         ModelAndView mv = new ModelAndView("admin/teacher/teacher");
         mv.addObject("teachers", teachers);
         return mv;
@@ -41,15 +47,20 @@ public class TeacherController {
     @ResponseBody
     public CommonResult create(@RequestParam String name,
                                @RequestParam String content, @RequestParam String level) {
+        //添加老师信息
+        iTeacherService.add(name,content,level);
         return CommonResult.success();
     }
 
     @RequestMapping(value = "/update-page/{id}", method = RequestMethod.GET)
     public ModelAndView getUpdatePage(@PathVariable long id) {
-        Teacher teacher = new Teacher();
+        Teacher teacher = iTeacherService.get(id);
+        if (teacher == null) {
+            return new ModelAndView("redirect:/admin/teachers");
+        }
         ModelAndView mv = new ModelAndView("admin/teacher/update-page");
         mv.addObject("teacher", teacher);
-        mv.addObject("content", "ffuck");
+        mv.addObject("content", iTeacherService.getContent(id));
         return mv;
     }
 
@@ -57,12 +68,16 @@ public class TeacherController {
     @ResponseBody
     public CommonResult update(@PathVariable long id, @RequestParam String name,
                                @RequestParam String content, @RequestParam String level) {
+        //更新老师信息
+        iTeacherService.update(id,name,content,level);
         return CommonResult.success();
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult delete(@PathVariable long id) {
+        //删除老师信息
+        iTeacherService.delete(id);
         return CommonResult.success();
     }
 }

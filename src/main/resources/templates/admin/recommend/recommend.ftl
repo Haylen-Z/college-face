@@ -22,7 +22,7 @@
             <div>
                 <div>
                     <ul  class="list-group ">
-                        <#list recomends as i>
+                        <#list recommends as i>
                             <li id="recommend${i.id}"  class="list-group-item">
                                 <label>${i.title}</label>
                                 <a href="/admin/recommends/update-page/${i.id}"  class="btn btn-outline-secondary m-2 float-right">编辑</a>

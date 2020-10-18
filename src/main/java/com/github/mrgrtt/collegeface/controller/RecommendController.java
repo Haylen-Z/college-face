@@ -3,12 +3,13 @@ package com.github.mrgrtt.collegeface.controller;
 
 import com.github.mrgrtt.collegeface.domain.dto.CommonResult;
 import com.github.mrgrtt.collegeface.domain.entity.Recommend;
+import com.github.mrgrtt.collegeface.service.IRecommendService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,11 +24,14 @@ import java.util.List;
 @RequestMapping("/admin/recommends")
 public class RecommendController {
 
+    @Autowired
+    IRecommendService iRecommendService;
+
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getRecommends() {
         ModelAndView mv = new ModelAndView("admin/recommend/recommend");
-        List<Recommend> recommends = new ArrayList<>();
-        mv.addObject("recomends", recommends);
+        List<Recommend> recommends = iRecommendService.getAll();
+        mv.addObject("recommends", recommends);
         return mv;
     }
 
@@ -41,12 +45,17 @@ public class RecommendController {
     @ResponseBody
     public CommonResult create(@RequestParam long articleId,
                                @RequestParam String title, @RequestParam String cover) {
+        //添加推荐信息
+        iRecommendService.add(title,articleId,cover);
         return CommonResult.success();
     }
 
     @RequestMapping(value = "/update-page/{id}", method = RequestMethod.GET)
     public ModelAndView getUpdatePage(@PathVariable long id) {
-        Recommend recommend = new Recommend();
+        Recommend recommend = iRecommendService.get(id);
+        if (recommend == null) {
+            return new ModelAndView("redirect:/admin/recommends");
+        }
         ModelAndView mv = new ModelAndView("admin/recommend/update-page");
         mv.addObject("recommend", recommend);
         return mv;
@@ -56,12 +65,16 @@ public class RecommendController {
     @ResponseBody
     public CommonResult update(@PathVariable long id, @RequestParam long articleId,
                                @RequestParam String title, @RequestParam String cover) {
+        //更新推荐信息
+        iRecommendService.update(id,title,articleId,cover);
         return CommonResult.success();
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult delete(@PathVariable long id) {
+        //删除推荐信息
+        iRecommendService.delete(id);
         return CommonResult.success();
     }
 }

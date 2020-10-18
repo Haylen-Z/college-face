@@ -6,7 +6,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/collegeface?useUnicode=true&characterEncodeing=utf-8&serverTimezone=Asia/Shanghai
     username: root
-    password: 3325
+    password: 3324
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   freemarker:

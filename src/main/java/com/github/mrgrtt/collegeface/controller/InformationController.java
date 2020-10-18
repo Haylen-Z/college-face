@@ -3,12 +3,13 @@ package com.github.mrgrtt.collegeface.controller;
 
 import com.github.mrgrtt.collegeface.domain.dto.CommonResult;
 import com.github.mrgrtt.collegeface.domain.entity.Information;
+
+import com.github.mrgrtt.collegeface.service.IInformationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,10 +24,13 @@ import java.util.List;
 @RequestMapping("/admin/information")
 public class InformationController {
 
+    @Autowired
+    IInformationService iInformationService;
+
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getInformation() {
         ModelAndView mv = new ModelAndView("admin/information/information");
-        List<Information> informationList = new ArrayList<>();
+        List<Information> informationList = iInformationService.getAll();
         mv.addObject("informationList", informationList);
         return mv;
     }
@@ -40,13 +44,17 @@ public class InformationController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult create(@RequestParam String name, @RequestParam String detail) {
+        iInformationService.add(name,detail);
         return CommonResult.success();
     }
 
     @RequestMapping(value = "/update-page/{id}", method = RequestMethod.GET)
     public ModelAndView getUpdatePage(@PathVariable long id) {
+        Information information = iInformationService.get(id);
+        if (information == null) {
+            return new ModelAndView("redirect:/admin/information");
+        }
         ModelAndView mv = new ModelAndView("admin/information/update-page");
-        Information information = new Information();
         mv.addObject("information", information);
         return mv;
     }
@@ -54,12 +62,14 @@ public class InformationController {
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult update(@PathVariable long id, @RequestParam String name, @RequestParam String detail) {
+        iInformationService.update(id,name,detail);
         return CommonResult.success();
     }
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult delete(@PathVariable long id) {
+        iInformationService.delete(id);
         return CommonResult.success();
     }
 
