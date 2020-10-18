@@ -21,44 +21,26 @@
             <div>
                 <div>
                     <ul  class="list-group ">
-                        <li  class="list-group-item">
-                            <a href="#" >陈基离</a>
-                            <a href="/admin/teachers/update-page/4"  class="btn btn-outline-secondary m-2 float-right">编辑</a>
-                            <a href="#" class="btn btn-danger m-2 float-right">删除</a>
-                        </li>
-                        <li  class="list-group-item">
-                            <a href="#" >name</a>
-                        </li>
-                        <li  class="list-group-item">
-                            <a href="#" >name</a>
-                        </li>
-                        <li  class="list-group-item">
-                            <a href="#" >name</a>
-                        </li>
-                        <li  class="list-group-item">
-                            <a href="#" >name</a>
-                        </li>
+                        <#list teachers as t>
+                            <li id="teacher${t.id}"  class="list-group-item">
+                                <label>${t.name}</label>
+                                <a href="/admin/teachers/update-page/${t.id}"  class="btn btn-outline-secondary m-2 float-right">编辑</a>
+                                <button onclick="delTeacher(${t.id})" class="btn btn-danger m-2 float-right">删除</button>
+                            </li>
+                        </#list>
+                        <script>
+                            function delTeacher(id) {
+                                $.ajax({
+                                    url: "/admin/tearchers/delete/" + id,
+                                    method: "POST",
+                                    success: function (r) {
+                                        $("#tearch" + id).remove();
+                                    }
+                                })
+                            }
+                        </script>
                     </ul>
                 </div>
-            </div>
-            <div class="row m-4">
-                <nav class="m-auto" aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </div>
     </div>

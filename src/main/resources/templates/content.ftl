@@ -25,6 +25,11 @@
                 </ol>
             </nav>
         </div>
+        <div class="m-4" style="background-color: #ffff">
+            <div class="m-4">
+                ${content}
+            </div>
+        </div>
     </div>
     <#import "common.ftl" as com>
     <@com.footer/>

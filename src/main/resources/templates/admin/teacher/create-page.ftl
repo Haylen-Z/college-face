@@ -12,10 +12,14 @@
     <div class="row">
         <@com.navSide 12/>
         <div class="col-8 m-4">
+            <div id="toast" class="toast" role="alert" aria-live="assertive" data-delay="3000">
+                <div id="toastContent" class="toast-body">
+                </div>
+            </div>
             <form>
                 <div class="form-group">
                     <label for="exampleInputEmail1">姓名</label>
-                    <input type="text"  class="form-control" id="title" >
+                    <input type="text"  class="form-control" id="name" >
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">职称</label>
@@ -31,6 +35,23 @@
 
     <script>
         function submitClick() {
+            let name = $("#name")[0].value;
+            let level = $("#level")[0].value;
+            let content = editor.txt.html();
+            if (name === null || name.trim() === ""
+                || content === null || content.trim() === ""
+                || level === null || level.trim() === "") {
+                return;
+            }
+            $.ajax({
+                url: "/admin/teacher/create",
+                method: "POST",
+                data: {name: name, level: level, content: content},
+                success: function (r) {
+                    $("#toastContent").text("发布成功");
+                    $("#toast").toast("show");
+                }
+            })
         }
     </script>
 </div>

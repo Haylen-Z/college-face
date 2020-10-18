@@ -1,56 +1,52 @@
+<!--后端学院信息列表-->
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta   charset="utf-8">
-        <title>首页推荐列表</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <script src="/js/jquery.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/jquery.cookie.min.js"></script>
-    </head>
-    <body>
-        <div    class="container">
-            <div    class="row">
-                <div    class="col-sm-3"    style="margin-top: 50px;">
-                    <nav    class="nav   bg-light">
-                        <ul class="nav nav-pills flex-column">
-                            <li class="nav-item">
-                                <a  class="nav-link" href="#">学院信息列表</a>
+<head>
+    <meta   charset="utf-8">
+    <title>首页推荐列表</title>
+    <#import "../../common.ftl" as com>
+    <@com.depend/>
+</head>
+<body>
+
+<div class="container">
+    <#assign ai = 99>
+    <div class="row">
+        <@com.navSide ai />
+        <div class="col">
+            <div class="m-3">
+                <a class="btn btn-primary" href="/admin/recommends/create-page">
+                    新增
+                </a>
+            </div>
+            <div>
+                <div>
+                    <ul  class="list-group ">
+                        <#list recomends as i>
+                            <li id="recommend${i.id}"  class="list-group-item">
+                                <label>${i.title}</label>
+                                <a href="/admin/recommends/update-page/${i.id}"  class="btn btn-outline-secondary m-2 float-right">编辑</a>
+                                <button onclick="delRecommend(${i.id})" class="btn btn-danger m-2 float-right">删除</button>
                             </li>
-                            <li class="nav-item">
-                                <a  class="nav-link" href="#">文章列表</a>
-                            </li>
-                            <li class="nav-item">
-                                <a  class="nav-link" href="#">教师信息列表</a>
-                            </li>
-                            <li class="nav-item">
-                                <a  class="nav-link active" href="#">首页推荐列表</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <div    class="col-sm-8"    style="margin-top: 50px;">
-                    <button type="submit"   class="btn btn-outline-success" style="margin-bottom: 20px;">新增</button>
-                   <ul  class="list-group ">
-                            <li  class="list-group-item">
-                                <label class="col-sm-9">标题1</label>
-                                <button type="submit"   class="btn btn-outline-warning">编辑</button>
-                                <button type="submit"   class="btn btn-outline-danger">删除</button>
-                            </li>
-                            <li  class="list-group-item">
-                                <label class="col-sm-9">标题</label>
-                                <button type="submit"   class="btn btn-outline-warning">编辑</button>
-                                <button type="submit"   class="btn btn-outline-danger">删除</button>
-                            </li>
-                            <li  class="list-group-item">
-                                <label class="col-sm-9">a标题dname</label>
-                                <button type="submit"   class="btn btn-outline-warning">编辑</button>
-                                <button type="submit"   class="btn btn-outline-danger">删除</button>
-                            </li>
+                        </#list>
+                        <script>
+                            function delRecommend(id) {
+                                $.ajax({
+                                    url: "/admin/recommends/delete/" + id,
+                                    method: "POST",
+                                    success: function (r) {
+                                        $("#recommend" + id).remove();
+                                    }
+                                })
+                            }
+                        </script>
                     </ul>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</div>
+
+<@com.footer/>
+</body>
 </html>

@@ -2,10 +2,15 @@ package com.github.mrgrtt.collegeface.controller;
 
 
 import com.github.mrgrtt.collegeface.domain.dto.CommonResult;
+import com.github.mrgrtt.collegeface.domain.entity.Article;
+import com.github.mrgrtt.collegeface.domain.entity.ArticleContent;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -22,8 +27,12 @@ public class ArticleController {
     public ModelAndView getArticles(@RequestParam int type,
                                     @RequestParam(required = false, defaultValue = "0") int start,
                                     @RequestParam(required = false, defaultValue = "16") int limit) {
+        List<Article> articles = new ArrayList<>();
         ModelAndView mv = new ModelAndView("admin/article/article");
         mv.addObject("type", type);
+        mv.addObject("start", start);
+        mv.addObject("limit", limit);
+        mv.addObject("articles", articles);
         return mv;
     }
 
@@ -42,7 +51,11 @@ public class ArticleController {
 
     @RequestMapping(value = "/update-page/{id}", method = RequestMethod.GET)
     public ModelAndView getUpdatePage(@PathVariable long id) {
+        Article article = new Article();
+        ArticleContent content = new ArticleContent();
         ModelAndView mv = new ModelAndView("admin/article/update-page");
+        mv.addObject("article", article);
+        mv.addObject("content", content.getDetail());
         return mv;
     }
 

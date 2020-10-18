@@ -91,7 +91,7 @@
             <h6  class="texts   colors">
                 <b>学院新闻  |  ACADEMY  NEWS</b>
             </h6>
-            <a  class="texts    links"    href="#"  ><b>更多>></b></a>
+            <a  class="texts    links"    href="/articles?type=0"  ><b>更多>></b></a>
     </div>
 
 <!--格栅布局-->
@@ -100,55 +100,33 @@
             <!--左侧新闻-->
             <div class="col-6">
                 <ul  class="list-group ">
-                    <li  class="list-group-item">
-                        <a href="#" >name</a>
-                        <label class="float-right" >2020-xx-xx</label>
-                    </li>
-                    <li  class="list-group-item">
-                        <a href="#" >name</a>
-                        <label class="float-right" >2020-xx-xx</label>
-                    </li>
-                    <li  class="list-group-item">
-                        <a href="#" >name</a>
-                        <label class="float-right" >2020-xx-xx</label>
-                    </li>
-                    <li  class="list-group-item">
-                        <a href="#" >name</a>
-                        <label class="float-right" >2020-xx-xx</label>
-                    </li>
-                    <li  class="list-group-item">
-                        <a href="#" >name</a>
-                        <label class="float-right" >2020-xx-xx</label>
-                    </li>
+                    <#list news as new>
+                        <li  class="list-group-item">
+                            <a href="/articles/${new.id}" >${new.title}</a>
+                            <label class="float-right" ><@com.dateFormat new.updateTime/></label>
+                        </li>
+                    </#list>
                 </ul>
             </div>
             <!--右侧轮播图-->
             <div  class="col-6">
                     <div id="carouselExampleCaptions" class="carousel" data-ride="carousel">
                         <ol class="carousel-indicators">
-                            <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-                            <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-                            <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                            <#list recommends as r>
+                                <li <#if r_index == 0> class="active" </#if> data-target="#carouselExampleCaptions" data-slide-to="${r_index}"></li>
+                            </#list>
                         </ol>
                         <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="/image/a1.jpg" class="d-block w-100 img-fluid" >
-                                <div class="carousel-caption d-none d-md-block">
-                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            <#list recommends as recommend>
+                                <div class="carousel-item <#if recommend_index == 0> active </#if>">
+                                    <a href="/articles/${recommend.articleId}">
+                                        <img src="${recommend.cover}" class="d-block w-100 img-fluid" >
+                                    </a>
+                                    <div class="carousel-caption d-none d-md-block">
+                                        <p>${recommend.title}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/image/a2.jpg" class="d-block w-100" alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="/image/a3.jpg" class="d-block w-100" alt="...">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                                </div>
-                            </div>
+                            </#list>
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -169,14 +147,14 @@
                     <h6  class="texts   colors">
                         <b>通知公告  |  NOTICE</b>
                     </h6>
-                    <a  class="texts    link"    href="#"   target="_blank"><b>更多>></b></a>
+                    <a  class="texts    link"    href="/articles?type=1" ><b>更多>></b></a>
                 </div><br/><br/>
             </div>
             <div    class="col-sm-6  new    sidebar">
                 <h6  class="texts   colors">
                     <b>专题工作  |  TOPIC   WORK</b>
                 </h6>
-                <a  class="texts    link"    href="#"   target="_blank"><b>更多>></b></a>
+                <a  class="texts    link"    href="/articles?type=2"  ><b>更多>></b></a>
             </div>
         </div>
     </div>
@@ -186,52 +164,28 @@
             <div    class="col-6">
                 <div>
                     <ul  class="list-group ">
-                        <li  class="list-group-item">
-                            <a href="#" >name</a>
-                            <label class="float-right" >2020-xx-xx</label>
-                        </li>
-                        <li  class="list-group-item">
-                            <a href="#" >name</a>
-                            <label class="float-right" >2020-xx-xx</label>
-                        </li>
-                        <li  class="list-group-item">
-                            <a href="#" >name</a>
-                            <label class="float-right" >2020-xx-xx</label>
-                        </li>
-                        <li  class="list-group-item">
-                            <a href="#" >name</a>
-                            <label class="float-right" >2020-xx-xx</label>
-                        </li>
-                        <li  class="list-group-item">
-                            <a href="#" >name</a>
-                            <label class="float-right" >2020-xx-xx</label>
-                        </li>
+                        <#list notices as n>
+                            <li  class="list-group-item">
+                                <a href="/articles/${n.id}" >${n.title}</a>
+                                <label class="float-right" >
+                                    <@com.dateFormat n.updateTime/>
+                                </label>
+                            </li>
+                        </#list>
                     </ul>
                 </div>
             </div>
             <div    class="col-6  list-group">
                 <div>
                     <ul  class="list-group ">
-                        <li  class="list-group-item">
-                            <a href="#" >name</a>
-                            <label class="float-right" >2020-xx-xx</label>
-                        </li>
-                        <li  class="list-group-item">
-                            <a href="#" >name</a>
-                            <label class="float-right" >2020-xx-xx</label>
-                        </li>
-                        <li  class="list-group-item">
-                            <a href="#" >name</a>
-                            <label class="float-right" >2020-xx-xx</label>
-                        </li>
-                        <li  class="list-group-item">
-                            <a href="#" >name</a>
-                            <label class="float-right" >2020-xx-xx</label>
-                        </li>
-                        <li  class="list-group-item">
-                            <a href="#" >name</a>
-                            <label class="float-right" >2020-xx-xx</label>
-                        </li>
+                        <#list topics as n>
+                            <li  class="list-group-item">
+                                <a href="/articles/${n.id}" >${n.title}</a>
+                                <label class="float-right" >
+                                    <@com.dateFormat n.updateTime/>
+                                </label>
+                            </li>
+                        </#list>
                     </ul>
                 </div>
             </div>

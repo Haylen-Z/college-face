@@ -4,7 +4,6 @@ import com.github.mrgrtt.collegeface.domain.dto.CommonResult;
 import com.github.mrgrtt.collegeface.service.IFileService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

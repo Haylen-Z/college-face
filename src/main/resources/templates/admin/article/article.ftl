@@ -21,44 +21,42 @@
                     <div>
                         <div>
                             <ul  class="list-group ">
-                                <li  class="list-group-item">
-                                        <a href="#" >name</a>
-                                        <label class="m-2 " >2020-xx-xx</label>
-                                        <button class="btn btn-outline-secondary m-2 float-right">编辑</button>
-                                        <button class="btn btn-outline-danger m-2 float-right">删除</button>
-                                </li>
-                                <li  class="list-group-item">
-                                    <a href="#" >name</a>
-                                    <label class="float-right" >2020-xx-xx</label>
-                                </li>
-                                <li  class="list-group-item">
-                                    <a href="#" >name</a>
-                                    <label class="float-right" >2020-xx-xx</label>
-                                </li>
-                                <li  class="list-group-item">
-                                    <a href="#" >name</a>
-                                    <label class="float-right" >2020-xx-xx</label>
-                                </li>
-                                <li  class="list-group-item">
-                                    <a href="#" >name</a>
-                                    <label class="float-right" >2020-xx-xx</label>
-                                </li>
+                                <#list articles as a>
+                                    <li id="article${a.id}"  class="list-group-item">
+                                        <label>${a.id}</label>
+                                        <label class="m-2">${a.title}</label>
+                                        <label class="m-2 " ><@com.dateFormat a.updateTime/></label>
+                                        <a href="/admin/articles/update-page/${a.id}" class="btn btn-outline-secondary m-2 float-right">编辑</a>
+                                        <button onclick="delArticle(${a.id})" class="btn btn-outline-danger m-2 float-right">删除</button>
+                                    </li>
+                                </#list>
+                                <script>
+                                    function delArticle(id) {
+                                        $.ajax({
+                                            url: "/admin/articles/delete/" + id,
+                                            method: "POST",
+                                            success: function (r) {
+                                                $("#article" + id).remove();
+                                            }
+                                        })
+                                    }
+                                </script>
                             </ul>
                         </div>
                     </div>
                     <div class="row m-4">
                         <nav class="m-auto" aria-label="Page navigation example">
                             <ul class="pagination">
+                                <#if start gt 0>
+                                    <li class="page-item">
+                                        <a class="page-link" href="/admin/articles?type=${type}&start=${start - limit}&limit=${limit}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                </#if>
+                                <li class="page-item"><label class="page-link">${start / limit + 1}</label></li>
                                 <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
+                                    <a class="page-link" href="/admin/articles?type=${type}&start=${start + limit}&limit=${limit}" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
                                 </li>

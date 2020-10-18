@@ -3,6 +3,7 @@
     <script src="/js/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery.cookie.min.js"></script>
+    <link rel="shortcut icon" href="/favicon.ico" />
 
     <style>
         body {
@@ -131,4 +132,7 @@
             }
         }
     </script>
+</#macro>
+<#macro dateFormat dateTime>
+    ${dateTime.year?c}-${dateTime.monthValue}-${dateTime.dayOfMonth}
 </#macro>

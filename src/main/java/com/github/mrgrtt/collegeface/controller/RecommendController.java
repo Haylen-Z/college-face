@@ -2,10 +2,14 @@ package com.github.mrgrtt.collegeface.controller;
 
 
 import com.github.mrgrtt.collegeface.domain.dto.CommonResult;
+import com.github.mrgrtt.collegeface.domain.entity.Recommend;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -22,6 +26,8 @@ public class RecommendController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getRecommends() {
         ModelAndView mv = new ModelAndView("admin/recommend/recommend");
+        List<Recommend> recommends = new ArrayList<>();
+        mv.addObject("recomends", recommends);
         return mv;
     }
 
@@ -40,7 +46,9 @@ public class RecommendController {
 
     @RequestMapping(value = "/update-page/{id}", method = RequestMethod.GET)
     public ModelAndView getUpdatePage(@PathVariable long id) {
+        Recommend recommend = new Recommend();
         ModelAndView mv = new ModelAndView("admin/recommend/update-page");
+        mv.addObject("recommend", recommend);
         return mv;
     }
 

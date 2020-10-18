@@ -12,9 +12,6 @@
 
 <body>
 
-<!--导航栏前添加桂工logo-->
-<!--使用 .navbar-brand 类来设置图片自适应导航栏-->
-<!--使用bg-light将导航栏颜色改为浅色-->
 <#import "common.ftl" as com>
 <@com.navBar activeName=""/>
 <div>
@@ -22,45 +19,18 @@
 </div>
 <main   class="container">
     <div class="row m-5">
-        <div class="col-auto m-auto">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">教授</h5>
-                    <a href="#" class="m-auto" >陈基离</a>
-                    <a href="#" class="m-auto" >陈基离</a>
-                    <a href="#" class="m-auto" >陈基离</a>
-                    <a href="#" class="m-auto" >陈基离</a>
-                    <a href="#" class="m-auto" >陈基离</a>
+        <#list levelTeacherMap as level, teachers>
+            <div class="col-auto m-auto">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">level</h5>
+                        <#list teachers as t>
+                            <a href="/teachers/${t.id}" class="m-auto" >${t.name}</a>
+                        </#list>
+                    </div>
                 </div>
             </div>
-
-        </div>
-        <div class="col-auto m-auto">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">教授</h5>
-                    <a href="#" class="m-auto" >陈基离</a>
-                    <a href="#" class="m-auto" >陈基离</a>
-                    <a href="#" class="m-auto" >陈基离</a>
-                    <a href="#" class="m-auto" >陈基离</a>
-                    <a href="#" class="m-auto" >陈基离</a>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-auto m-auto">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">教授</h5>
-                    <a href="#" class="m-auto" >陈基离</a>
-                    <a href="#" class="m-auto" >陈基离</a>
-                    <a href="#" class="m-auto" >陈基离</a>
-                    <a href="#" class="m-auto" >陈基离</a>
-                    <a href="#" class="m-auto" >陈基离</a>
-                </div>
-            </div>
-
-        </div>
+        </#list>
     </div>
 </main>
 <#import "common.ftl" as com>

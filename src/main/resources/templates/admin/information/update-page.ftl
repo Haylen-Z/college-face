@@ -15,10 +15,13 @@
             <form>
                 <div class="form-group">
                     <label for="exampleInputEmail1">信息名</label>
-                    <input type="text"  class="form-control" id="name" >
+                    <input type="text"  value="${information.name}" class="form-control" id="name" >
                 </div>
                 <div class="form-group">
                     <@com.editor/>
+                    <script>
+                        editor.txt.append('${information.detail}');
+                    </script>
                 </div>
             </form>
             <button onclick="submitClick()" class="btn btn-primary float-right w-25">提交</button>
@@ -28,7 +31,24 @@
     <script>
         function submitClick() {
             let name = $("#name")[0].value;
-            let content = editor.txt.html();
+            let detail = editor.txt.html();
+            if (name === null || name.trim() === ""
+                || detail === null || detail.trim() === "") {
+                return;
+            }
+            $.ajax({
+                url: "/admin/information/update/${information.id}",
+                method: "POST",
+                data: {name: name, detail: detail},
+                success: function (r) {
+                    $("#toastContent").text("跟新成功");
+                    $("#toast").toast("show");
+                },
+                error: function (x, s, e) {
+                    $("#toastContent").text("跟新失败");
+                    $("#toast").toast("show");
+                }
+            });
         }
     </script>
 </div>

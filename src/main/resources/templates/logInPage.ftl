@@ -11,6 +11,16 @@
     <main class="container">
         <div class="row m-5">
             <div class="col-4 m-auto">
+                <#if error??>
+                    <div id="toast" class="toast" role="alert" aria-live="assertive" data-delay="3000">
+                        <div class="toast-body">
+                            ${error}
+                        </div>
+                    </div>
+                    <script>
+                        $("#toast").toast("show");
+                    </script>
+                </#if>
                 <div class="card">
                     <div class="card-body">
                         <form name="form" action="/login" onsubmit="return verify()" method="POST" class="form-horizontal" role="form">

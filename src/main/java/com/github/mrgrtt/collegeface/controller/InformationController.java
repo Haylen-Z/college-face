@@ -2,10 +2,14 @@ package com.github.mrgrtt.collegeface.controller;
 
 
 import com.github.mrgrtt.collegeface.domain.dto.CommonResult;
+import com.github.mrgrtt.collegeface.domain.entity.Information;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -22,6 +26,8 @@ public class InformationController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getInformation() {
         ModelAndView mv = new ModelAndView("admin/information/information");
+        List<Information> informationList = new ArrayList<>();
+        mv.addObject("informationList", informationList);
         return mv;
     }
 
@@ -40,6 +46,8 @@ public class InformationController {
     @RequestMapping(value = "/update-page/{id}", method = RequestMethod.GET)
     public ModelAndView getUpdatePage(@PathVariable long id) {
         ModelAndView mv = new ModelAndView("admin/information/update-page");
+        Information information = new Information();
+        mv.addObject("information", information);
         return mv;
     }
 

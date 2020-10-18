@@ -12,6 +12,10 @@
             <div class="row">
                 <@com.navSide 12/>
                 <div class="col-8 m-4">
+                    <div id="toast" class="toast" role="alert" aria-live="assertive" data-delay="3000">
+                        <div id="toastContent" class="toast-body">
+                        </div>
+                    </div>
                     <form>
                         <div class="form-group">
                             <label for="exampleInputEmail1">标题</label>
@@ -38,9 +42,19 @@
                     let title = $("#title")[0].value;
                     let type = $("#type")[0].value;
                     let content = editor.txt.html();
-                    console.log(title);
-                    console.log(type);
-                    console.log(content);
+                    if (title === null || title.trim() === ""
+                        || content === null || content.trim() === "") {
+                        return;
+                    }
+                    $.ajax({
+                        url: "/admin/articles/create",
+                        method: "POST",
+                        data: {title: title, type: type, content: content},
+                        success: function (r) {
+                            $("#toastContent").text("发布成功");
+                            $("#toast").toast("show");
+                        }
+                    })
                 }
             </script>
         </div>

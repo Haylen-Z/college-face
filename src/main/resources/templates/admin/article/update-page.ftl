@@ -12,22 +12,30 @@
     <div class="row">
         <@com.navSide 12/>
         <div class="col-8 m-4">
+            <div id="toast" class="toast" role="alert" aria-live="assertive" data-delay="3000">
+                <div id="toastContent" class="toast-body">
+                </div>
+            </div>
             <form>
                 <div class="form-group">
                     <label for="exampleInputEmail1">标题</label>
-                    <input type="text"  class="form-control" id="title" >
+                    <input type="text" value="${article.title}"  class="form-control" id="title" >
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">类型</label>
                     <select id="type" class="form-control">
-                        <option value="0">新闻</option>
-                        <option value="1">通知</option>
-                        <option value="2">专题</option>
+                        <option value="0" <#if article.type == 0>selected="selected"</#if>>新闻</option>
+                        <option value="1" <#if article.type == 1>selected="selected"</#if>>通知</option>
+                        <option value="2"<#if article.type == 2>selected="selected"</#if>>专题</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <@com.editor/>
+                    <script>
+                        editor.txt.append('${content}');
+                    </script>
                 </div>
+
             </form>
             <button onclick="submitClick()" class="btn btn-primary float-right w-25">更新</button>
         </div>
@@ -38,9 +46,19 @@
             let title = $("#title")[0].value;
             let type = $("#type")[0].value;
             let content = editor.txt.html();
-            console.log(title);
-            console.log(type);
-            console.log(content);
+            if (title === null || title.trim() === ""
+                || content === null || content.trim() === "") {
+                return;
+            }
+            $.ajax({
+                url: "/admin/articles/update/${article.id}",
+                method: "POST",
+                data: {title: title, type: type, content: content},
+                success: function (r) {
+                    $("#toastContent").text("编辑成功");
+                    $("#toast").toast("show");
+                }
+            })
         }
     </script>
 </div>
