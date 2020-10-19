@@ -44,7 +44,7 @@
                 return;
             }
             $.ajax({
-                url: "/admin/teacher/create",
+                url: "/admin/teachers/create",
                 method: "POST",
                 data: {name: name, level: level, content: content},
                 success: function (r) {

@@ -31,7 +31,7 @@
                         <script>
                             function delTeacher(id) {
                                 $.ajax({
-                                    url: "/admin/tearchers/delete/" + id,
+                                    url: "/admin/teachers/delete/" + id,
                                     method: "POST",
                                     success: function (r) {
                                         $("#tearch" + id).remove();
