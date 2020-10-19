@@ -23,7 +23,7 @@
             <div class="col-auto m-auto">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">level</h5>
+                        <h5 class="card-title">${level}</h5>
                         <#list teachers as t>
                             <a href="/teachers/${t.id}" class="m-auto" >${t.name}</a>
                         </#list>

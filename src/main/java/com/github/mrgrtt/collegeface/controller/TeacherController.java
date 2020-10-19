@@ -48,6 +48,7 @@ public class TeacherController {
     public CommonResult create(@RequestParam String name,
                                @RequestParam String content, @RequestParam String level) {
         //添加老师信息
+
         iTeacherService.add(name,content,level);
         return CommonResult.success();
     }

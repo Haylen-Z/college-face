@@ -41,6 +41,7 @@ public class RecommendServiceImpl  implements IRecommendService {
         recommend.setTitle(title);
         recommend.setCreateTime(createTime);
         recommend.setArticleId(articleId);
+        recommend.setUpdateTime(createTime);
         recommendMapper.insert(recommend);
     }
 
