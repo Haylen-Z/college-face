@@ -20,7 +20,7 @@
                 <div class="form-group">
                     <@com.editor/>
                     <script>
-                        editor.txt.append('${information.detail}');
+                        editor.txt.html('${information.detail}');
                     </script>
                 </div>
             </form>

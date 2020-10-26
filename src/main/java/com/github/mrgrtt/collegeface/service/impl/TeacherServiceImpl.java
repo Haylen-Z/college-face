@@ -83,6 +83,7 @@ public class TeacherServiceImpl implements ITeacherService {
         //更新文章内容表
         ArticleContent articleContent = new ArticleContent();
         articleContent.setId(article_id);
+        articleContent.setDetail(content);
         articleContent.setUpdateTime(updateTime);
         articleContentMapper.updateById(articleContent);
 
