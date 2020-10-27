@@ -24,6 +24,7 @@ public class TeacherServiceImpl implements ITeacherService {
 
     @Autowired
     ArticleContentMapper articleContentMapper;
+
     @Autowired
     TeacherMapper teacherMapper;
 
@@ -63,6 +64,7 @@ public class TeacherServiceImpl implements ITeacherService {
         teacher.setUpdateTime(localDateTime);
         teacher.setArticleContentId(article_content_id);
         teacherMapper.insert(teacher);
+
     }
 
     @Override
